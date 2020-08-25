@@ -11,8 +11,135 @@
 
 </head>
 <body>
-    <h1>
-        Welcome To Easy Bank
-    </h1>
+
+    <div id="login-area">
+        <h1 class="text-center">
+            Welcome To Easy Bank
+        </h1>
+
+        <div class="submit-area">
+            <h4>Login</h4>
+            <input type="text" class="form-control" placeholder="Email">
+            <br>
+            <input type="password" class="form-control" placeholder="Password">
+            <br>
+            <button id="login-btn" class="btn btn-success">GO</button>
+        </div>
+    </div>
+
+        <div id="transaction-area">
+            <h1 class="text-center">
+                Transaction Area
+            </h1>
+
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="deposit status">
+                        <h2 class="text-center">Deposit</h2>
+                        <h4 class="text-center">$ <span id="currentDeposit">00</span></h4>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4 ">
+                    <div class="withdraw status">
+                        <h2 class="text-center">Withdraw</h2>
+                        <h4 class="text-center">$ <span id="currentWithdraw">00</span> </h4>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4 ">
+                    <div class="balance status">
+                        <h2 class="text-center">Balance</h2>
+                        <h4 class="text-center">$ <span id="currentBalance">1200</span></h4>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="submit-area">
+                        <h4>Deposit</h4>
+                    <input id="depositAmmount" type="text " class="form-control" placeholder="$ ammount you want to Deposit">
+                    <br>
+                    <button id="addDeposit" class="btn btn-success">
+                        Deposit
+                    </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="submit-area">
+                        <h4>Withdraw</h4>
+                    <input id="withdrawAmmount"  type="text" class="form-control" placeholder="$ ammount you want to Withdraw">
+                    <br>
+                    <button id="addWithdraw" class="btn btn-success">
+                        Withdraw
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <script>
+            // login area button work
+            
+            const loginBtn = document.getElementById("login-btn");
+            loginBtn.addEventListener("click",function(){
+                const loginArea = document.getElementById("login-area");
+                loginArea.style.display = "none";
+
+                const transactionArea = document.getElementById("transaction-area");
+                transactionArea.style.display = 'block';
+            })
+
+            // deposit area button work
+            const depositBtn = document.getElementById("addDeposit");
+            depositBtn.addEventListener("click",function(){
+                const depositAmmount = document.getElementById("depositAmmount").value;
+                const depositNumber = parseFloat(depositAmmount);
+
+                const currentDeposit = document.getElementById("currentDeposit").innerText;
+                const currentDepositNumber = parseFloat(currentDeposit);
+                const totalAmmount = depositNumber+currentDepositNumber; 
+                document.getElementById("currentDeposit").innerText = totalAmmount;
+                 document.getElementById("depositAmmount").value ="";
+
+                //balance area section work
+
+                const currentBalance = document.getElementById("currentBalance").innerText;
+                const currentBalanceNumber = parseFloat(currentBalance);
+                const totalBalance = currentDepositNumber+currentBalanceNumber;
+                document.getElementById("currentBalance").innerText = totalBalance;
+
+                
+            })
+
+            // withdraw area button work
+
+            const withdrawBtn = document.getElementById("addWithdraw");
+            withdrawBtn.addEventListener("click",function(){
+                const withdrawAmmount = document.getElementById("withdrawAmmount").value;
+                const withdrawNumber = parseFloat(withdrawAmmount);
+                
+                const currentWithdraw = document.getElementById("currentWithdraw").innerText;
+                const currentWithdrawNumber = parseFloat(currentWithdraw);
+                const totalWithdraw = currentWithdrawNumber+withdrawNumber;
+                document.getElementById("currentWithdraw").innerText = totalWithdraw;
+                 document.getElementById("withdrawAmmount").value ="";
+
+                //balance area section work
+
+                const currentBalance = document.getElementById("currentBalance").innerText;
+                const currentBalanceNumber = parseFloat(currentBalance);
+                const totalBalance = currentBalanceNumber - currentWithdrawNumber;
+                document.getElementById("currentBalance").innerText = totalBalance;
+                 
+
+            })
+
+        </script>
+    
+    
 </body>
 </html>
